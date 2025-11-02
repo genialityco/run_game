@@ -4,8 +4,8 @@ import getImg, { loadImages } from './imageLoader'
 import Trex from './trex'
 import GroundManager from './groundManager'
 import DistanceMeter from './distanceMeter'
-import restartButtonImg from './images/restart_button.png'
-import gameoverTextImg from './images/gameover_text.png'
+import restartButtonImg from './images/repeat.png'
+import gameoverTextImg from './images/game_over2.png'
 
 /**
  * @readonly
@@ -54,10 +54,10 @@ class Runner {
         WIDTH: window.innerWidth-100,
         HEIGHT: 600,
         BG_COLOR: '', // canvas background
-        INIT_SPEED: 300, // pixel/s
+        INIT_SPEED: 500, // pixel/s
         ACCELERATION: 15,
-        ACCELERATION_INTERVAL: 2, // s
-        MAX_SPEED: 800,
+        ACCELERATION_INTERVAL: 4, // s
+        MAX_SPEED: 2000,
         // event.code
         KEYCODE_JUMP: 'Space',
         RESTART_BUTTON_SRC: restartButtonImg,

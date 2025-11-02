@@ -10,8 +10,8 @@ import cloudImg from './images/nube1.png'
 import groundImg from './images/ground2.png'
 import cactusSmallImg from './images/cactus4.png'
 import cactusLargeImg from './images/cactus3.png'
-import restartButtonImg from './images/restart_button.png'
-import gameoverTextImg from './images/gameover_text.png'
+import restartButtonImg from './images/repeat.png'
+import gameoverTextImg from './images/game_over2.png'
 import scoreNumberImg from './images/score_number.png'
 
 /**

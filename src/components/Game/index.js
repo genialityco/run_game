@@ -230,8 +230,28 @@ class App extends Component {
                     muted
                 />
 
-                {/* Indicador de detección */}
+                {/* Logo central arriba */}
                 <div style={{
+                    position: 'absolute',
+                    top: '20px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    zIndex: 1000
+                }}>
+                    <img
+                        src="public/images/LOGO_GEN.png"
+                        alt="Logo"
+                        className="logo"
+                        style={{
+                            maxWidth: '400px',
+                            height: 'auto',
+                            filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.3))'
+                        }}
+                    />
+                </div>
+
+                {/* Indicador de detección */}
+                {/* <div style={{
                     position: 'absolute',
                     top: '20px',
                     right: '20px',
@@ -245,7 +265,7 @@ class App extends Component {
                     boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
                 }}>
                     {poseDetected ? '✓ Listo para saltar' : '⚠ Muévete para ser detectado'}
-                </div>
+                </div> */}
 
                 {/* Área del juego */}
                 <div
@@ -258,7 +278,7 @@ class App extends Component {
                         alignItems: 'center',
                         justifyContent: 'center',
                         background: "#c3b022",
-background: "linear-gradient(0deg,rgba(195, 176, 34, 1) 2%, rgba(195, 160, 34, 1) 39%, rgba(253, 125, 45, 1) 100%)",
+                        backgroundImage: "linear-gradient(0deg,rgba(195, 176, 34, 1) 2%, rgba(195, 160, 34, 1) 39%, rgba(253, 125, 45, 1) 100%)",
                         position: 'relative'
                     }}
                 >
