@@ -16,7 +16,7 @@ class CloudManager {
     lastCloud
     /** @type {object} */
     config = {
-        MIN_CLOUD_AMOUNT: 0,
+        MIN_CLOUD_AMOUNT: 2,
         MAX_CLOUD_AMOUNT: Infinity,
         MAX_CLOUD_GAP: null, // this.canvas.width / 1
         MIN_CLOUD_GAP: null, // this.canvas.width / 4

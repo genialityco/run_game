@@ -52,7 +52,7 @@ class Cloud extends Sprite {
      */
     draw() {
         this.canvasCtx.save()
-        this.canvasCtx.drawImage(this.img, this.xPos, this.yPos)
+        this.canvasCtx.drawImage(this.img, this.xPos, this.yPos-200)
         this.canvasCtx.restore()
     }
 
