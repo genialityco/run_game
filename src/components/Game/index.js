@@ -16,7 +16,13 @@ class App extends Component {
         this.previousY = null;
         this.isJumping = false;
         this.jumpCooldown = false;
+        this.state = {
+            // ... tus estados existentes
+            showCamera: true,  // por defecto visible
+            // poseDetected, gameStarted, etc.
+        };
     }
+    
 
     componentDidMount() {
         this.initMediaPipe();
@@ -163,7 +169,7 @@ class App extends Component {
         if (this.previousY !== null && !this.jumpCooldown) {
             const yDifference = this.previousY - currentY;
             
-            if (yDifference > 0.08 && !this.isJumping) {
+            if (yDifference > 0.15 && !this.isJumping) {
                 this.triggerJump();
                 this.isJumping = true;
                 this.jumpCooldown = true;
@@ -212,25 +218,89 @@ class App extends Component {
     }
 
     render() {
-        const { gameStarted, poseDetected } = this.state;
-
+        const { gameStarted, poseDetected, showCamera } = this.state;
+    
         return (
             <div style={{ 
                 width: '100%', 
                 height: '100vh', 
                 display: 'flex',
                 flexDirection: 'column',
-                position: 'relative'
+                position: 'relative',
+                overflow: 'hidden'
             }}>
-                {/* Video oculto */}
-                <video
-                    ref={this.videoRef}
-                    style={{ display: 'none' }}
-                    autoPlay
-                    playsInline
-                    muted
-                />
-
+                {/* Video de cámara (vista previa pequeña) */}
+                <div
+                    style={{
+                        position: 'absolute',
+                        bottom: '20px',
+                        right: showCamera ? '20px' : '-300px', // oculto fuera de pantalla
+                        width: '240px',
+                        height: '180px',
+                        borderRadius: '12px',
+                        overflow: 'hidden',
+                        boxShadow: '0 8px 20px rgba(0,0,0,0.4)',
+                        zIndex: 999,
+                        transition: 'right 0.4s ease-in-out',
+                        background: '#000'
+                    }}
+                >
+                    <video
+                        ref={this.videoRef}
+                        autoPlay
+                        playsInline
+                        muted
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            transform: 'scaleX(-1)', // espejo (como en selfie)
+                        }}
+                    />
+    
+                    {/* Botón para ocultar/mostrar */}
+                    <button
+                        onClick={() => this.setState(prev => ({ showCamera: !prev.showCamera }))}
+                        style={{
+                            position: 'absolute',
+                            top: '8px',
+                            right: '8px',
+                            width: '32px',
+                            height: '32px',
+                            background: 'rgba(0,0,0,0.6)',
+                            border: 'none',
+                            borderRadius: '50%',
+                            color: 'white',
+                            fontSize: '16px',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            zIndex: 1000,
+                            transition: 'all 0.2s'
+                        }}
+                        onMouseEnter={(e) => e.target.style.background = 'rgba(0,0,0,0.8)'}
+                        onMouseLeave={(e) => e.target.style.background = 'rgba(0,0,0,0.6)'}
+                    >
+                        {showCamera ? '✕' : '📷'}
+                    </button>
+    
+                    {/* Indicador de detección en la cámara */}
+                    <div style={{
+                        position: 'absolute',
+                        bottom: '8px',
+                        left: '8px',
+                        padding: '4px 8px',
+                        background: poseDetected ? 'rgba(39, 174, 96, 0.9)' : 'rgba(231, 76, 60, 0.9)',
+                        color: 'white',
+                        borderRadius: '4px',
+                        fontSize: '11px',
+                        fontWeight: 'bold'
+                    }}>
+                        {poseDetected ? '✓ Detectado' : 'Buscando...'}
+                    </div>
+                </div>
+    
                 {/* Logo central arriba */}
                 <div style={{
                     position: 'absolute',
@@ -242,7 +312,6 @@ class App extends Component {
                     <img
                         src={logoImage}
                         alt="Logo"
-                        className="logo"
                         style={{
                             maxWidth: '400px',
                             height: 'auto',
@@ -250,24 +319,7 @@ class App extends Component {
                         }}
                     />
                 </div>
-
-                {/* Indicador de detección */}
-                {/* <div style={{
-                    position: 'absolute',
-                    top: '20px',
-                    right: '20px',
-                    padding: '10px 20px',
-                    background: poseDetected ? '#27ae60' : '#e74c3c',
-                    color: 'white',
-                    borderRadius: '5px',
-                    fontWeight: 'bold',
-                    fontSize: '14px',
-                    zIndex: 1000,
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
-                }}>
-                    {poseDetected ? '✓ Listo para saltar' : '⚠ Muévete para ser detectado'}
-                </div> */}
-
+    
                 {/* Área del juego */}
                 <div
                     ref={(node) => { this.outerContainerEl = node; }}
@@ -307,7 +359,7 @@ class App extends Component {
                                 e.target.style.background = '#27ae60';
                             }}
                         >
-                            🎮 INICIAR JUEGO
+                            INICIAR JUEGO
                         </button>
                     )}
                 </div>

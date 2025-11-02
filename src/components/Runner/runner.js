@@ -54,8 +54,8 @@ class Runner {
         WIDTH: window.innerWidth-100,
         HEIGHT: 800,
         BG_COLOR: '', // canvas background
-        INIT_SPEED: 800, // pixel/s
-        ACCELERATION: 15,
+        INIT_SPEED: 500, // pixel/s
+        ACCELERATION: 10,
         ACCELERATION_INTERVAL: 4, // s
         MAX_SPEED: 2000,
         // event.code

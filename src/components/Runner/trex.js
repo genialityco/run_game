@@ -40,7 +40,7 @@ class Trex extends Sprite {
 
     /**
      * object config
-     * @type {{IMG_SRC: Array | string, STATUS: object, DUCK_INTERVAL: number, X_POS: number, Y_POS: number, GROUND_HEIGHT: number, GRAVITY: number, JUMP_SPEED: number, SPEED: number, SOUNDS: object, HITBOX_REDUCTION: object}}
+     * @type {{IMG_SRC: Array | string, STATUS: object, DUCK_INTERVAL: number, X_POS: number, Y_POS: number, GROUND_HEIGHT: number, GRAVITY: number, JUMP_SPEED: number, SPEED: number, SOUNDS: object}}
      */
     config = {
         IMG_SRC: defaultTrexImg,
@@ -64,13 +64,6 @@ class Trex extends Sprite {
             JUMP: jumpSound,
             HIT: hitSound,
         },
-        // Configuración del hitbox reducido para el jugador
-        HITBOX_REDUCTION: {
-            width: 0.2,    // 60% del ancho (reduce 40%)
-            height: 0.3,   // 70% del alto (reduce 30%)
-            offsetX: 0.2,  // 20% de offset horizontal
-            offsetY: 0.15  // 15% de offset vertical
-        }
     }
 
     /**
@@ -90,59 +83,6 @@ class Trex extends Sprite {
             this.canvas.height - this.img.height - this.config.GROUND_HEIGHT
         this.yPos = this.config.Y_POS || this.groundY
         this.status = STATUS.START
-        
-        // Almacenar la configuración del hitbox
-        this.hitboxReduction = this.config.HITBOX_REDUCTION
-    }
-
-    /**
-     * Obtiene el hitbox reducido del jugador
-     * @returns {{x: number, y: number, width: number, height: number}}
-     */
-    getHitbox() {
-        const currentImg = this.config.STATUS[this.status].img
-        const imgElement = currentImg instanceof Image ? currentImg : this.img
-        const originalWidth = imgElement.width
-        const originalHeight = imgElement.height
-        
-        return {
-            x: this.xPos + (originalWidth * this.hitboxReduction.offsetX),
-            y: this.yPos + (originalHeight * this.hitboxReduction.offsetY),
-            width: originalWidth * this.hitboxReduction.width,
-            height: originalHeight * this.hitboxReduction.height
-        }
-    }
-
-    /**
-     * Verifica colisión con un obstáculo usando hitboxes reducidos
-     * @param {object} obstacle - objeto obstáculo con método getHitbox()
-     * @returns {boolean}
-     */
-    collidesWith(obstacle) {
-        const playerHitbox = this.getHitbox()
-        const obstacleHitbox = obstacle.getHitbox ? obstacle.getHitbox() : {
-            x: obstacle.xPos,
-            y: obstacle.yPos,
-            width: obstacle.img.width,
-            height: obstacle.img.height
-        }
-        
-        return (
-            playerHitbox.x < obstacleHitbox.x + obstacleHitbox.width &&
-            playerHitbox.x + playerHitbox.width > obstacleHitbox.x &&
-            playerHitbox.y < obstacleHitbox.y + obstacleHitbox.height &&
-            playerHitbox.y + playerHitbox.height > obstacleHitbox.y
-        )
-    }
-
-    /**
-     * Dibuja el hitbox del jugador (útil para debugging)
-     */
-    drawHitbox() {
-        const hitbox = this.getHitbox()
-        this.canvasCtx.strokeStyle = 'rgba(0, 255, 0, 0.7)'
-        this.canvasCtx.lineWidth = 2
-        this.canvasCtx.strokeRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height)
     }
 
     /**
@@ -178,9 +118,6 @@ class Trex extends Sprite {
         }
 
         this.draw()
-        
-        // Descomentar la siguiente línea para ver el hitbox del jugador mientras desarrollas:
-        // this.drawHitbox()
     }
 
     switchDuck() {
