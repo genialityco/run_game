@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logoImage from '../Runner/images/LOGO_GEN.png';
 
 class App extends Component {
     constructor(props) {
@@ -239,7 +240,7 @@ class App extends Component {
                     zIndex: 1000
                 }}>
                     <img
-                        src="public/images/LOGO_GEN.png"
+                        src={logoImage}
                         alt="Logo"
                         className="logo"
                         style={{
