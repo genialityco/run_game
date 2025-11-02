@@ -54,7 +54,7 @@ class Trex extends Sprite {
             CRASH: { img: tRexCrashImg },
         },
         DUCK_INTERVAL: 0.1,
-        X_POS: 20,
+        X_POS: 100,
         Y_POS: null,
         GROUND_HEIGHT: 70,
         GRAVITY: 1000,

@@ -51,12 +51,12 @@ class Runner {
     /** @type {{ID: string, WIDTH: number, HEIGHT: number, BG_COLOR: string, INIT_SPEED: number, ACCELERATION: number, ACCELERATION_INTERVAL: number, MAX_SPEED: number, KEYCODE_JUMP: string, RESTART_BUTTON_SRC: string, GAMEOVER_TEXT_SRC: string}} */
     config = {
         ID: '', // canvas id
-        WIDTH: 1920,
-        HEIGHT: 300,
+        WIDTH: window.innerWidth-100,
+        HEIGHT: 600,
         BG_COLOR: '', // canvas background
         INIT_SPEED: 300, // pixel/s
-        ACCELERATION: 7,
-        ACCELERATION_INTERVAL: 1, // s
+        ACCELERATION: 15,
+        ACCELERATION_INTERVAL: 2, // s
         MAX_SPEED: 800,
         // event.code
         KEYCODE_JUMP: 'Space',

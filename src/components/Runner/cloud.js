@@ -3,7 +3,7 @@
 import { isNumber, random } from 'lodash'
 
 import Sprite from './sprite'
-import defaultCloudImg from './images/cloud.png'
+import defaultCloudImg from './images/nube1.png'
 
 class Cloud extends Sprite {
     /** @type {boolean} */
@@ -39,7 +39,7 @@ class Cloud extends Sprite {
             (this.config.MAX_SKY_LEVEL = this.img.height)
         isNumber(this.config.MIN_SKY_LEVEL) ||
             (this.config.MIN_SKY_LEVEL =
-                this.canvas.height / 2 - this.img.height)
+                this.canvas.height / 1.5 - this.img.height)
 
         this.xPos = this.config.X_POS || this.canvas.width
         this.yPos =

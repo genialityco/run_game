@@ -37,7 +37,7 @@ class CloudManager {
         this.canvasCtx = this.canvas.getContext('2d')
 
         this.config.MAX_CLOUD_GAP = this.canvas.width / 1
-        this.config.MIN_CLOUD_GAP = this.canvas.width / 4
+        this.config.MIN_CLOUD_GAP = this.canvas.width / 2
         this.config = {
             ...this.config,
             ...options,

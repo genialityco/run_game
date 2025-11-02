@@ -6,7 +6,7 @@ import tRexDuck1Img from './images/buho_duck1.png'
 import tRexDuck2Img from './images/buho_duck2.png'
 import tRexCrashImg from './images/buho_crash.png'
 
-import cloudImg from './images/cloud.png'
+import cloudImg from './images/nube1.png'
 import groundImg from './images/ground2.png'
 import cactusSmallImg from './images/cactus4.png'
 import cactusLargeImg from './images/cactus3.png'
@@ -34,7 +34,7 @@ const imageArray = [
 ]
 
 /**
- * @type {Map<string, HTMLImageElement>}
+ * @type {Map<string, HTMLImageElement>} 
  */
 const imageMap = new Map()
 
