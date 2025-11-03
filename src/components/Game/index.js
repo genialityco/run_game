@@ -150,14 +150,28 @@ class App extends Component {
         sendFrame();
     }
 
-    onPoseResults(results) {
-        if (results.poseLandmarks) {
+   onPoseResults(results) {
+    if (results.poseLandmarks) {
+        const landmarks = results.poseLandmarks;
+
+        // Calcular promedio del eje X del cuerpo
+        const avgX = landmarks.reduce((sum, lm) => sum + lm.x, 0) / landmarks.length;
+
+        // Rango central permitido (ajústalo según cámara)
+        const minX = 0.35;
+        const maxX = 0.65;
+
+        // Filtrar: solo aceptar persona si está en el centro
+        if (avgX > minX && avgX < maxX) {
             this.setState({ poseDetected: true });
-            this.detectJump(results.poseLandmarks);
+            this.detectJump(landmarks);
         } else {
             this.setState({ poseDetected: false });
         }
+    } else {
+        this.setState({ poseDetected: false });
     }
+}
 
     detectJump(landmarks) {
         if (!landmarks[23] || !landmarks[24] || !this.state.gameStarted) return;
