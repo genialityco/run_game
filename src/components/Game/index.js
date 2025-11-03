@@ -160,16 +160,16 @@ class App extends Component {
     }
 
     detectJump(landmarks) {
-        if (!landmarks[27] || !landmarks[28] || !this.state.gameStarted) return;
-
-        const leftAnkle = landmarks[27];
-        const rightAnkle = landmarks[28];
-        const currentY = (leftAnkle.y + rightAnkle.y) / 2;
-
+        if (!landmarks[23] || !landmarks[24] || !this.state.gameStarted) return;
+    
+        const leftHip = landmarks[23];
+        const rightHip = landmarks[24];
+        const currentY = (leftHip.y + rightHip.y) / 2;
+    
         if (this.previousY !== null && !this.jumpCooldown) {
             const yDifference = this.previousY - currentY;
             
-            if (yDifference > 0.15 && !this.isJumping) {
+            if (yDifference > 0.05 && !this.isJumping) {
                 this.triggerJump();
                 this.isJumping = true;
                 this.jumpCooldown = true;
@@ -180,7 +180,7 @@ class App extends Component {
                 }, 600);
             }
         }
-
+    
         this.previousY = currentY;
     }
 
