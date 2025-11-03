@@ -94,9 +94,9 @@ class Sprite {
      */
     isOverlap(sprite) {
         return (
-            this.xPos < (sprite.xPos + sprite.img.width -10) &&
+            this.xPos < (sprite.xPos + sprite.img.width -20) &&
             this.xPos + this.img.width > sprite.xPos &&
-            this.yPos < (sprite.yPos + sprite.img.height -10) &&
+            this.yPos < (sprite.yPos + sprite.img.height -20) &&
             this.yPos + this.img.height > sprite.yPos
         )
     }
