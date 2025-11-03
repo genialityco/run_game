@@ -169,7 +169,7 @@ class App extends Component {
         if (this.previousY !== null && !this.jumpCooldown) {
             const yDifference = this.previousY - currentY;
             
-            if (yDifference > 0.05 && !this.isJumping) {
+            if (yDifference > 0.02 && !this.isJumping) {
                 this.triggerJump();
                 this.isJumping = true;
                 this.jumpCooldown = true;
