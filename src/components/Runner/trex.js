@@ -57,9 +57,9 @@ class Trex extends Sprite {
         X_POS: 100,
         Y_POS: null,
         GROUND_HEIGHT: 70,
-        GRAVITY: 1000,
-        JUMP_SPEED: 550,
-        SPEED: 70, // move when you start the game for the first time
+        GRAVITY: 1600,
+        JUMP_SPEED: 600,
+        SPEED: 50, // move when you start the game for the first time
         SOUNDS: {
             JUMP: jumpSound,
             HIT: hitSound,

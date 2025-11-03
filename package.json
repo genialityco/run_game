@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "NODE_OPTIONS=--openssl-legacy-provider cross-env NODE_ENV=development webpack-dev-server --config config/webpack.config.dev.js --mode development",
+    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider NODE_ENV=development webpack-dev-server --config config/webpack.config.dev.js --mode development",
     "build": "NODE_OPTIONS=--openssl-legacy-provider cross-env NODE_ENV=production webpack --config config/webpack.config.prod.js --mode production",
     "test": "echo \"No tests configured\" && exit 0",
     "lint": "eslint src --ext .js,.jsx"
@@ -61,5 +61,9 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+   "engines": {
+    "node": "20.x"
+    
   }
 }

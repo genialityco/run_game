@@ -216,6 +216,7 @@ class Runner {
         this.restartLock = performance.now() // ms
         this.status = STATUS.CRASH
         this.distanceMeter.updateHighScore()
+        
         this.drawGameOverPanel()
     }
 
@@ -232,17 +233,37 @@ class Runner {
         const textImg = getImg(this.config.GAMEOVER_TEXT_SRC)
         // restart button
         const buttonImg = getImg(this.config.RESTART_BUTTON_SRC)
+        const score = this.distanceMeter?.score || 0
         this.canvasCtx.save()
         this.canvasCtx.drawImage(
             textImg,
             this.canvas.width / 2 - textImg.width / 2,
-            (this.canvas.height * 2) / 5 - textImg.height / 2
+            (this.canvas.height * 2) / 5 - textImg.height / 2 - 20
         )
-        this.canvasCtx.drawImage(
+         this.canvasCtx.drawImage(
             buttonImg,
             this.canvas.width / 2 - buttonImg.width / 2,
             (this.canvas.height * 3) / 5 - buttonImg.height / 2
         )
+        
+        // draw score text
+        this.canvasCtx.font = 'bold 35px Arial'
+        this.canvasCtx.textAlign = 'center'
+        const scoreText = `Score: ${Math.floor(score)}`
+        const textX = this.canvas.width / 2
+        const textY = (this.canvas.height * 2) / 5 + textImg.height / 2 + 22
+        
+        // draw text stroke (contorno)
+        this.canvasCtx.strokeStyle = '#d1a955'
+        this.canvasCtx.lineWidth = 3
+        this.canvasCtx.strokeText(scoreText, textX, textY)
+        
+        // draw text fill
+        this.canvasCtx.fillStyle = '#163f47'
+        this.canvasCtx.fillText(scoreText, textX, textY)
+        
+       
+        
         this.canvasCtx.restore()
     }
 }
