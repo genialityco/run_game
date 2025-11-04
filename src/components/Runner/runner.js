@@ -89,6 +89,8 @@ class Runner {
 
         this.canvas.width = WIDTH
         this.canvas.height = HEIGHT
+        this.canvas.style.position = 'relative'
+        this.canvas.style.top = '-50px' 
         this.canvasCtx = this.canvas.getContext('2d')
 
         this.currentSpeed = INIT_SPEED
