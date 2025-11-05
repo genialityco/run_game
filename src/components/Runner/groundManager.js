@@ -48,8 +48,8 @@ class GroundManager {
         }
 
         this.config.OBSTACLE_CONFIG.X_POS = this.canvas.width
-        this.config.MAX_OBSTACLE_GAP = this.canvas.width * 2.0
-        this.config.MIN_OBSTACLE_GAP = this.canvas.width * 1.5
+        this.config.MAX_OBSTACLE_GAP = this.canvas.width * 1.5
+        this.config.MIN_OBSTACLE_GAP = this.canvas.width * 1.0
     }
 
     /**
